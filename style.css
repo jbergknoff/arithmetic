@@ -1,0 +1,40 @@
+body {
+	background-color: #bce8bf;
+}
+
+.centered-flexbox {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.big-text {
+	font-size: 15em;
+	font-family: sans-serif;
+}
+
+input {
+	border: none;
+	display: inline;
+	font-family: inherit;
+	font-size: inherit;
+	background-color: inherit;
+	text-align: center;
+	padding: none;
+	width: 2em;
+}
+
+input:focus {
+	outline: none;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
