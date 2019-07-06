@@ -3,8 +3,8 @@
 		window.addEventListener(
 			'DOMContentLoaded',
 			(event) => {
-				new Audio('/success.mp3');
-				new Audio('/failure.mp3');
+				new Audio('./success.mp3');
+				new Audio('./failure.mp3');
 				preact.render(preact.createElement(Game), document.body);
 			}
 		);
@@ -48,13 +48,13 @@
 
 				this.setState({ playing_sound: true });
 				if (~~this.state.input == this.state.problem.answer) {
-					const sound_effect = new Audio('/success.mp3');
+					const sound_effect = new Audio('./success.mp3');
 					sound_effect.addEventListener('ended', () => { this.setState({ playing_sound: false, problem: this.generate_problem(), input: '' }); });
 					sound_effect.play();
 					return;
 				}
 
-				const sound_effect = new Audio('/failure.mp3');
+				const sound_effect = new Audio('./failure.mp3');
 				sound_effect.addEventListener('ended', () => { this.setState({ playing_sound: false, input: '' }); });
 				sound_effect.play();
 			}
