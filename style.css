@@ -38,3 +38,12 @@ input:focus {
 input[type=number]::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 }
+
+span {
+	padding: 0.1em;
+}
+
+span.icon {
+	position: relative;
+	top: 0.1em;
+}

@@ -9,6 +9,16 @@
 			}
 		);
 
+		class Operand extends preact.Component {
+			render(props) {
+				if (props.boxes && props.value != 0) {
+					return preact.h('span', { className: `icon icon-${props.value}` });
+				}
+
+				return preact.h('span', null, props.value);
+			}
+		}
+
 		class Game extends preact.Component {
 			constructor() {
 				super();
@@ -22,14 +32,24 @@
 
 				if (Math.random() < 0.5) {
 					return {
-						statement: `${bigger} \u2212 ${smaller}`,
+						statement: preact.h(
+							'span', null,
+							preact.h(Operand, { boxes: true, value: bigger }),
+							preact.h('span', null, '\u2212'),
+							preact.h(Operand, { boxes: true, value: smaller }),
+						),
 						answer: bigger - smaller,
 					};
 				} else {
 					const addends = [bigger, smaller];
-					const firstIndex = Math.round(Math.random());
+					const first_index = Math.round(Math.random());
 					return {
-						statement: `${addends[firstIndex]} + ${addends[1 - firstIndex]}`,
+						statement: preact.h(
+							'span', null,
+							preact.h(Operand, { boxes: true, value: addends[first_index] }),
+							preact.h('span', null, '+'),
+							preact.h(Operand, { boxes: true, value: addends[1 - first_index] }),
+						),
 						answer: bigger + smaller,
 					};
 				}
@@ -59,23 +79,24 @@
 				sound_effect.play();
 			}
 
-		    render(props, state) {
-		    	return preact.h(
-		    		'form',
-		    		{ className: 'centered-flexbox big-text', onSubmit: this.on_submit.bind(this) },
-		    		preact.h('span', null, `${state.problem.statement} =`),
-		    		preact.h(
-		    			'input',
-		    			{
-		    				type: 'number',
-		    				value: state.input,
-		    				readonly: this.state.playing_sound,
-		    				onChange: this.on_change.bind(this),
-		    				autofocus: true,
-		    			}
-		    		),
-		    	);
-		    }
+			render(props, state) {
+				return preact.h(
+					'form',
+					{ className: 'centered-flexbox big-text', onSubmit: this.on_submit.bind(this) },
+					this.state.problem.statement,
+					preact.h('span', null, '='),
+					preact.h(
+						'input',
+						{
+							type: 'number',
+							value: state.input,
+							readonly: this.state.playing_sound,
+							onChange: this.on_change.bind(this),
+							autofocus: true,
+						}
+					),
+				);
+			}
 		}
 	}
 )();
