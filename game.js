@@ -27,8 +27,13 @@
 
 			generate_problem() {
 				const max_sum = 10;
-				const bigger = ~~((max_sum + 1) * Math.random());
-				const smaller = ~~((Math.min(bigger, 10 - bigger) + 1) * Math.random());
+				// Zeroes don't make for interesting problems, so exclude them from the range and then
+				// introduce them with some small probability.
+				const bigger = 1 + ~~((max_sum - 1) * Math.random());
+				const smaller = 1 + ~~(Math.min(bigger, max_sum - bigger - 1) * Math.random());
+				if (Math.random() < 0.05) {
+					smaller = 0;
+				}
 
 				if (Math.random() < 0.5) {
 					return {
