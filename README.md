@@ -1,5 +1,7 @@
 # Arithmetic game for little kids
 
+Playable online here: https://jbergknoff.github.io/arithmetic
+
 ## Attribution
 
 * Success sound from https://freesound.org/people/grunz/sounds/109662/
